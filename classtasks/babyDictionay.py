@@ -21,16 +21,27 @@ babyDictionary = {
     "python": "programming er vasha, 1 dhoroner sap"
 }
 
-def search(word):
+def e2b(word):
     items = babyDictionary.items()
     
     result = []
     for x, y in items:
         if(word in x):
-            result.append(y)
-        elif(word in y):
-            result.append(x)
+            result.append(x + " : " + y )
         
+    if(len(result) < 1):
+        return "404 Not Found!"
+    else:
+        return ", ".join(result)
+def b2e(word):
+    items = babyDictionary.items()
+    
+    result = []
+    for x, y in items:
+        if(word == y or word in y):
+            result.append(y + " : " + x )
+        
+
     if(len(result) < 1):
         return "404 Not Found!"
     else:
@@ -40,12 +51,12 @@ print("choose a option by number from the list below:")
 print("1. English to Bengali")
 print("2. Bengali to English")
 while True:
-    optionInput = int(input("option no : "))
+    optionInput = int(input("option no => "))
     if(optionInput == 1):
-        searchInput = str(input(("English : ")))
-        print("Bengali: ", search(searchInput))
+        searchInput = str(input(("English => ")))
+        print("Result => \n", e2b(searchInput))
     elif(optionInput == 2):
-        searchInput = str(input(("Bengali: ")))
-        print("English: ", search(searchInput))
+        searchInput = str(input(("Bengali => ")))
+        print("Result => \n", b2e(searchInput))
     else:
         print("sorry, please choose a valid option")
